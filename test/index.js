@@ -35,6 +35,7 @@ const sqrt = n =>
 //    testLaws :: Object -> Object -> Undefined
 const testLaws = laws => arbs => {
   (Object.keys (laws)).forEach (name => {
+    eq (laws[name].length) (arbs[name].length);
     test (name.replace (/[A-Z]/g, c => ' ' + c.toLowerCase ()),
           laws[name] (...arbs[name]));
   });
@@ -245,7 +246,6 @@ suite ('Ord laws', () => {
       EitherArb (jsc.string) (jsc.number),
     ],
     antisymmetry: [
-      EitherArb (jsc.string) (jsc.number),
       EitherArb (jsc.string) (jsc.number),
       EitherArb (jsc.string) (jsc.number),
     ],
