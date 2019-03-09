@@ -114,7 +114,7 @@
   //. .             (Z[k].test (Right (Useless)) ? '\u2705   ' :
   //. .              Z[k].test (Right (['foo'])) ? '\u2705 * ' :
   //. .              /* otherwise */               '\u274C   '))
-  //. .       (S.keys (Z.filter ($.test ([]) ($.TypeClass), Z)))
+  //. .       (S.keys (S.unchecked.filter (S.is ($.TypeClass)) (Z)))
   //. [ 'Setoid          ✅ * ',  // if ‘a’ and ‘b’ satisfy Setoid
   //. . 'Ord             ✅ * ',  // if ‘a’ and ‘b’ satisfy Ord
   //. . 'Semigroupoid    ❌   ',
