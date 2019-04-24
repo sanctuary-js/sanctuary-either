@@ -46,9 +46,10 @@
     /* eslint-disable no-unused-vars */
     var S = __doctest.require ('sanctuary');
     var $ = __doctest.require ('sanctuary-def');
-    var type = __doctest.require ('sanctuary-type-identifiers');
     /* eslint-enable no-unused-vars */
   }
+
+  var eitherTypeIdent = 'sanctuary-either/Either@1';
 
   var Either = {};
 
@@ -57,6 +58,7 @@
     'constructor':            Either,
     'isLeft':                 true,
     'isRight':                false,
+    '@@type':                 eitherTypeIdent,
     '@@show':                 Left$prototype$show,
     'fantasy-land/map':       Left$prototype$map,
     'fantasy-land/bimap':     Left$prototype$bimap,
@@ -74,6 +76,7 @@
     'constructor':            Either,
     'isLeft':                 false,
     'isRight':                true,
+    '@@type':                 eitherTypeIdent,
     '@@show':                 Right$prototype$show,
     'fantasy-land/map':       Right$prototype$map,
     'fantasy-land/bimap':     Right$prototype$bimap,
@@ -181,19 +184,6 @@
     right.value = value;
     return right;
   };
-
-  //# Either.@@type :: String
-  //.
-  //. Either [type identifier][].
-  //.
-  //. ```javascript
-  //. > type (Right (42))
-  //. 'sanctuary-either/Either@1'
-  //.
-  //. > type.parse (type (Right (42)))
-  //. {namespace: 'sanctuary-either', name: 'Either', version: 1}
-  //. ```
-  Either['@@type'] = 'sanctuary-either/Either@1';
 
   //# Either.fantasy-land/of :: b -> Either a b
   //.
