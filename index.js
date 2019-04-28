@@ -43,20 +43,11 @@
 
   /* istanbul ignore if */
   if (typeof __doctest !== 'undefined') {
+    /* eslint-disable no-unused-vars */
+    var S = __doctest.require ('sanctuary');
     var $ = __doctest.require ('sanctuary-def');
     var type = __doctest.require ('sanctuary-type-identifiers');
-    var S = (function() {
-      var S = __doctest.require ('sanctuary');
-      var EitherType = $.BinaryType
-        ('sanctuary-either/Either')
-        ('')
-        (function(x) { return type (x) === Either['@@type']; })
-        (function(e) { return e.isLeft ? [e.value] : []; })
-        (function(e) { return e.isLeft ? [] : [e.value]; });
-      var env = Z.concat (S.env,
-                          [$.TypeClass, EitherType ($.Unknown) ($.Unknown)]);
-      return S.create ({checkTypes: true, env: env});
-    } ());
+    /* eslint-enable no-unused-vars */
   }
 
   var Either = {};
@@ -439,22 +430,22 @@
 
   //# Either#fantasy-land/alt :: Either a b ~> Either a b -> Either a b
   //.
-  //.   - `alt (Left (x)) (Left (y))` is equivalent to `Left (y)`
-  //.   - `alt (Left (x)) (Right (y))` is equivalent to `Right (y)`
-  //.   - `alt (Right (x)) (Left (y))` is equivalent to `Right (x)`
-  //.   - `alt (Right (x)) (Right (y))` is equivalent to `Right (x)`
+  //.   - `alt (Left (y)) (Left (x))` is equivalent to `Left (y)`
+  //.   - `alt (Right (y)) (Left (x))` is equivalent to `Right (y)`
+  //.   - `alt (Left (y)) (Right (x))` is equivalent to `Right (x)`
+  //.   - `alt (Right (y)) (Right (x))` is equivalent to `Right (x)`
   //.
   //. ```javascript
-  //. > S.alt (Left ('A')) (Left ('B'))
+  //. > S.alt (Left ('B')) (Left ('A'))
   //. Left ('B')
   //.
-  //. > S.alt (Left ('C')) (Right (1))
+  //. > S.alt (Right (1)) (Left ('C'))
   //. Right (1)
   //.
-  //. > S.alt (Right (2)) (Left ('D'))
+  //. > S.alt (Left ('D')) (Right (2))
   //. Right (2)
   //.
-  //. > S.alt (Right (3)) (Right (4))
+  //. > S.alt (Right (4)) (Right (3))
   //. Right (3)
   //. ```
   function Left$prototype$alt(other) {
