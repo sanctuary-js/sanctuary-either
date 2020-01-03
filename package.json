@@ -24,7 +24,7 @@
     "sanctuary": "2.0.1",
     "sanctuary-def": "0.20.x",
     "sanctuary-identity": "2.0.x",
-    "sanctuary-scripts": "3.2.x",
+    "sanctuary-scripts": "4.0.x",
     "sanctuary-type-identifiers": "3.0.0",
     "sanctuary-useless": "2.0.x"
   },
