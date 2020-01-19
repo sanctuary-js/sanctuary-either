@@ -45,11 +45,11 @@ value is of type `b`.
 . 'Contravariant   ❌   ' ]
 ```
 
-#### <a name="Either" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L144">`Either :: TypeRep Either`</a>
+#### <a name="Either" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L144">`Either :: TypeRep Either`</a>
 
 Either [type representative][].
 
-#### <a name="Either.Left" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L148">`Either.Left :: a -⁠> Either a b`</a>
+#### <a name="Either.Left" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L148">`Either.Left :: a -⁠> Either a b`</a>
 
 Constructs a value of type `Either a b` from a value of type `a`.
 
@@ -58,7 +58,7 @@ Constructs a value of type `Either a b` from a value of type `a`.
 Left ('sqrt undefined for -1')
 ```
 
-#### <a name="Either.Right" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L171">`Either.Right :: b -⁠> Either a b`</a>
+#### <a name="Either.Right" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L171">`Either.Right :: b -⁠> Either a b`</a>
 
 Constructs a value of type `Either a b` from a value of type `b`.
 
@@ -67,7 +67,7 @@ Constructs a value of type `Either a b` from a value of type `b`.
 Right (42)
 ```
 
-#### <a name="Either.fantasy-land/of" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L194">`Either.fantasy-land/of :: b -⁠> Either a b`</a>
+#### <a name="Either.fantasy-land/of" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L194">`Either.fantasy-land/of :: b -⁠> Either a b`</a>
 
   - `of (Either) (x)` is equivalent to `Right (x)`
 
@@ -76,7 +76,7 @@ Right (42)
 Right (42)
 ```
 
-#### <a name="Either.fantasy-land/chainRec" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L207">`Either.fantasy-land/chainRec :: ((a -⁠> c, b -⁠> c, a) -⁠> Either d c, a) -⁠> Either d b`</a>
+#### <a name="Either.fantasy-land/chainRec" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L207">`Either.fantasy-land/chainRec :: ((a -⁠> c, b -⁠> c, a) -⁠> Either d c, a) -⁠> Either d b`</a>
 
 ```javascript
 > Z.chainRec (
@@ -96,7 +96,7 @@ Left ('!!')
 Right (65536)
 ```
 
-#### <a name="Either.prototype.@@show" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L236">`Either#@@show :: (Showable a, Showable b) => Either a b ~> () -⁠> String`</a>
+#### <a name="Either.prototype.@@show" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L236">`Either#@@show :: (Showable a, Showable b) => Either a b ~> () -⁠> String`</a>
 
   - `show (Left (x))` is equivalent to `'Left (' + show (x) + ')'`
   - `show (Right (x))` is equivalent to `'Right (' + show (x) + ')'`
@@ -109,7 +109,7 @@ Right (65536)
 'Right ([1, 2, 3])'
 ```
 
-#### <a name="Either.prototype.fantasy-land/equals" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L255">`Either#fantasy-land/equals :: (Setoid a, Setoid b) => Either a b ~> Either a b -⁠> Boolean`</a>
+#### <a name="Either.prototype.fantasy-land/equals" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L255">`Either#fantasy-land/equals :: (Setoid a, Setoid b) => Either a b ~> Either a b -⁠> Boolean`</a>
 
   - `Left (x)` is equal to `Left (y)` [iff][] `x` is equal to `y`
     according to [`Z.equals`][]
@@ -128,7 +128,7 @@ true
 false
 ```
 
-#### <a name="Either.prototype.fantasy-land/lte" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L280">`Either#fantasy-land/lte :: (Ord a, Ord b) => Either a b ~> Either a b -⁠> Boolean`</a>
+#### <a name="Either.prototype.fantasy-land/lte" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L280">`Either#fantasy-land/lte :: (Ord a, Ord b) => Either a b ~> Either a b -⁠> Boolean`</a>
 
   - `Left (x)` is less than or equal to `Left (y)` [iff][] `x` is less
     than or equal to `y` according to [`Z.lte`][]
@@ -150,7 +150,7 @@ false
 [Left (0), Left (1), Left (2)]
 ```
 
-#### <a name="Either.prototype.fantasy-land/concat" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L308">`Either#fantasy-land/concat :: (Semigroup a, Semigroup b) => Either a b ~> Either a b -⁠> Either a b`</a>
+#### <a name="Either.prototype.fantasy-land/concat" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L308">`Either#fantasy-land/concat :: (Semigroup a, Semigroup b) => Either a b ~> Either a b -⁠> Either a b`</a>
 
   - `concat (Left (x)) (Left (y))` is equivalent to
     `Left (concat (x) (y))`
@@ -173,7 +173,7 @@ Right ([1, 2, 3])
 Right ([1, 2, 3])
 ```
 
-#### <a name="Either.prototype.fantasy-land/map" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L337">`Either#fantasy-land/map :: Either a b ~> (b -⁠> c) -⁠> Either a c`</a>
+#### <a name="Either.prototype.fantasy-land/map" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L337">`Either#fantasy-land/map :: Either a b ~> (b -⁠> c) -⁠> Either a c`</a>
 
   - `map (f) (Left (x))` is equivalent to `Left (x)`
   - `map (f) (Right (x))` is equivalent to `Right (f (x))`
@@ -186,7 +186,7 @@ Left ('sqrt undefined for -1')
 Right (100)
 ```
 
-#### <a name="Either.prototype.fantasy-land/bimap" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L356">`Either#fantasy-land/bimap :: Either a c ~> (a -⁠> b, c -⁠> d) -⁠> Either b d`</a>
+#### <a name="Either.prototype.fantasy-land/bimap" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L356">`Either#fantasy-land/bimap :: Either a c ~> (a -⁠> b, c -⁠> d) -⁠> Either b d`</a>
 
   - `bimap (f) (g) (Left (x))` is equivalent to `Left (f (x))`
   - `bimap (f) (g) (Right (x))` is equivalent to `Right (g (x))`
@@ -199,7 +199,7 @@ Left ('ABC')
 Right (100)
 ```
 
-#### <a name="Either.prototype.fantasy-land/ap" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L375">`Either#fantasy-land/ap :: Either a b ~> Either a (b -⁠> c) -⁠> Either a c`</a>
+#### <a name="Either.prototype.fantasy-land/ap" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L375">`Either#fantasy-land/ap :: Either a b ~> Either a (b -⁠> c) -⁠> Either a c`</a>
 
   - `ap (Left (x)) (Left (y))` is equivalent to `Left (x)`
   - `ap (Left (x)) (Right (y))` is equivalent to `Left (x)`
@@ -220,7 +220,7 @@ Left ('sqrt undefined for -1')
 Right (100)
 ```
 
-#### <a name="Either.prototype.fantasy-land/chain" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L402">`Either#fantasy-land/chain :: Either a b ~> (b -⁠> Either a c) -⁠> Either a c`</a>
+#### <a name="Either.prototype.fantasy-land/chain" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L402">`Either#fantasy-land/chain :: Either a b ~> (b -⁠> Either a c) -⁠> Either a c`</a>
 
   - `chain (f) (Left (x))` is equivalent to `Left (x)`
   - `chain (f) (Right (x))` is equivalent to `f (x)`
@@ -239,7 +239,7 @@ Left ('sqrt undefined for -1')
 Right (5)
 ```
 
-#### <a name="Either.prototype.fantasy-land/alt" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L427">`Either#fantasy-land/alt :: Either a b ~> Either a b -⁠> Either a b`</a>
+#### <a name="Either.prototype.fantasy-land/alt" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L427">`Either#fantasy-land/alt :: Either a b ~> Either a b -⁠> Either a b`</a>
 
   - `alt (Left (y)) (Left (x))` is equivalent to `Left (y)`
   - `alt (Right (y)) (Left (x))` is equivalent to `Right (y)`
@@ -260,7 +260,7 @@ Right (2)
 Right (3)
 ```
 
-#### <a name="Either.prototype.fantasy-land/reduce" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L454">`Either#fantasy-land/reduce :: Either a b ~> ((c, b) -⁠> c, c) -⁠> c`</a>
+#### <a name="Either.prototype.fantasy-land/reduce" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L454">`Either#fantasy-land/reduce :: Either a b ~> ((c, b) -⁠> c, c) -⁠> c`</a>
 
   - `reduce (f) (x) (Left (y))` is equivalent to `x`
   - `reduce (f) (x) (Right (y))` is equivalent to `f (x) (y)`
@@ -273,7 +273,7 @@ Right (3)
 [1, 2]
 ```
 
-#### <a name="Either.prototype.fantasy-land/traverse" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L473">`Either#fantasy-land/traverse :: Applicative f => Either a b ~> (TypeRep f, b -⁠> f c) -⁠> f (Either a c)`</a>
+#### <a name="Either.prototype.fantasy-land/traverse" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L473">`Either#fantasy-land/traverse :: Applicative f => Either a b ~> (TypeRep f, b -⁠> f c) -⁠> f (Either a c)`</a>
 
   - `traverse (A) (f) (Left (x))` is equivalent to `of (A) (Left (x))`
   - `traverse (A) (f) (Right (x))` is equivalent to `map (Right) (f (x))`
@@ -286,7 +286,7 @@ Right (3)
 [Right ('foo'), Right ('bar'), Right ('baz')]
 ```
 
-#### <a name="Either.prototype.fantasy-land/extend" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.0.0/index.js#L492">`Either#fantasy-land/extend :: Either a b ~> (Either a b -⁠> c) -⁠> Either a c`</a>
+#### <a name="Either.prototype.fantasy-land/extend" href="https://github.com/sanctuary-js/sanctuary-either/blob/v2.1.0/index.js#L492">`Either#fantasy-land/extend :: Either a b ~> (Either a b -⁠> c) -⁠> Either a c`</a>
 
   - `extend (f) (Left (x))` is equivalent to `Left (x)`
   - `extend (f) (Right (x))` is equivalent to `Right (f (Right (x)))`
@@ -300,7 +300,7 @@ Right (100)
 ```
 
 [Fantasy Land]:             https://github.com/fantasyland/fantasy-land/tree/v4.0.1
-[`Z.equals`]:               https://github.com/sanctuary-js/sanctuary-type-classes/tree/v12.0.0#equals
-[`Z.lte`]:                  https://github.com/sanctuary-js/sanctuary-type-classes/tree/v12.0.0#lte
+[`Z.equals`]:               https://github.com/sanctuary-js/sanctuary-type-classes/tree/v12.1.0#equals
+[`Z.lte`]:                  https://github.com/sanctuary-js/sanctuary-type-classes/tree/v12.1.0#lte
 [iff]:                      https://en.wikipedia.org/wiki/If_and_only_if
 [type representative]:      https://github.com/fantasyland/fantasy-land/tree/v4.0.1#type-representatives
