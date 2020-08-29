@@ -91,14 +91,11 @@
     /* eslint-enable key-spacing */
   };
 
-  var custom = util.inspect.custom;
+  var custom = util.inspect.custom;  // added in Node.js v6.6.0
   /* istanbul ignore else */
   if (typeof custom === 'symbol') {
     Left$prototype[custom] = Left$prototype$show;
     Right$prototype[custom] = Right$prototype$show;
-  } else {
-    Left$prototype.inspect = Left$prototype$show;
-    Right$prototype.inspect = Right$prototype$show;
   }
 
   //. `Either a b` satisfies the following [Fantasy Land][] specifications:
