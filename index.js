@@ -231,10 +231,10 @@
   //.   - `show (Right (x))` is equivalent to `'Right (' + show (x) + ')'`
   //.
   //. ```javascript
-  //. > show (Left ('sqrt undefined for -1'))
+  //. > S.show (Left ('sqrt undefined for -1'))
   //. 'Left ("sqrt undefined for -1")'
   //.
-  //. > show (Right ([1, 2, 3]))
+  //. > S.show (Right ([1, 2, 3]))
   //. 'Right ([1, 2, 3])'
   //. ```
   function Left$prototype$show() {
@@ -397,7 +397,7 @@
   //.   - `chain (f) (Right (x))` is equivalent to `f (x)`
   //.
   //. ```javascript
-  //. > const sqrt = n => n < 0 ? Left ('sqrt undefined for ' + show (n))
+  //. > const sqrt = n => n < 0 ? Left ('sqrt undefined for ' + S.show (n))
   //. .                         : Right (Math.sqrt (n))
   //.
   //. > S.chain (sqrt) (Left ('div undefined for 0'))
