@@ -16,11 +16,11 @@
 //. `Either a b` is either a Left whose value is of type `a` or a Right whose
 //. value is of type `b`.
 
-(function(f) {
+(f => {
 
   'use strict';
 
-  var util = {inspect: {}};
+  const util = {inspect: {}};
 
   /* istanbul ignore else */
   if (typeof module === 'object' && typeof module.exports === 'object') {
@@ -28,34 +28,31 @@
                         require ('sanctuary-show'),
                         require ('sanctuary-type-classes'));
   } else if (typeof define === 'function' && define.amd != null) {
-    define (['sanctuary-show', 'sanctuary-type-classes'], function(show, Z) {
-      return f (util, show, Z);
-    });
+    define (['sanctuary-show', 'sanctuary-type-classes'],
+            (show, Z) => f (util, show, Z));
   } else {
     self.sanctuaryEither = f (util,
                               self.sanctuaryShow,
                               self.sanctuaryTypeClasses);
   }
 
-} (function(util, show, Z) {
+}) ((util, show, Z) => {
 
   'use strict';
 
   /* istanbul ignore if */
   if (typeof __doctest !== 'undefined') {
-    /* eslint-disable no-unused-vars */
+    /* eslint-disable no-unused-vars, no-var */
     var S = __doctest.require ('sanctuary');
     var $ = __doctest.require ('sanctuary-def');
-    /* eslint-enable no-unused-vars */
-    S.bimap = S.unchecked.bimap;
-    S.of = S.unchecked.of;
+    /* eslint-enable no-unused-vars, no-var */
   }
 
-  var eitherTypeIdent = 'sanctuary-either/Either@1';
+  const eitherTypeIdent = 'sanctuary-either/Either@1';
 
-  var Either = {};
+  const Either = {};
 
-  var Left$prototype = {
+  const Left$prototype = {
     /* eslint-disable key-spacing */
     'constructor':            Either,
     'isLeft':                 true,
@@ -69,11 +66,11 @@
     'fantasy-land/alt':       Left$prototype$alt,
     'fantasy-land/reduce':    Left$prototype$reduce,
     'fantasy-land/traverse':  Left$prototype$traverse,
-    'fantasy-land/extend':    Left$prototype$extend
+    'fantasy-land/extend':    Left$prototype$extend,
     /* eslint-enable key-spacing */
   };
 
-  var Right$prototype = {
+  const Right$prototype = {
     /* eslint-disable key-spacing */
     'constructor':            Either,
     'isLeft':                 false,
@@ -87,15 +84,17 @@
     'fantasy-land/alt':       Right$prototype$alt,
     'fantasy-land/reduce':    Right$prototype$reduce,
     'fantasy-land/traverse':  Right$prototype$traverse,
-    'fantasy-land/extend':    Right$prototype$extend
+    'fantasy-land/extend':    Right$prototype$extend,
     /* eslint-enable key-spacing */
   };
 
-  var custom = util.inspect.custom;  // added in Node.js v6.6.0
-  /* istanbul ignore else */
-  if (typeof custom === 'symbol') {
-    Left$prototype[custom] = Left$prototype$show;
-    Right$prototype[custom] = Right$prototype$show;
+  {
+    const {custom} = util.inspect;  // added in Node.js v6.6.0
+    /* istanbul ignore else */
+    if (typeof custom === 'symbol') {
+      Left$prototype[custom] = Left$prototype$show;
+      Right$prototype[custom] = Right$prototype$show;
+    }
   }
 
   //. `Either a b` satisfies the following [Fantasy Land][] specifications:
@@ -146,8 +145,8 @@
   //. > Left ('sqrt undefined for -1')
   //. Left ('sqrt undefined for -1')
   //. ```
-  var Left = Either.Left = function(value) {
-    var left = Object.create (Left$prototype);
+  const Left = Either.Left = value => {
+    const left = Object.create (Left$prototype);
     if (Z.Setoid.test (value)) {
       left['fantasy-land/equals'] = Left$prototype$equals;
       if (Z.Ord.test (value)) {
@@ -169,8 +168,8 @@
   //. > Right (42)
   //. Right (42)
   //. ```
-  var Right = Either.Right = function Right(value) {
-    var right = Object.create (Right$prototype);
+  const Right = Either.Right = value => {
+    const right = Object.create (Right$prototype);
     if (Z.Setoid.test (value)) {
       right['fantasy-land/equals'] = Right$prototype$equals;
       if (Z.Ord.test (value)) {
@@ -194,8 +193,8 @@
   //. ```
   Either['fantasy-land/of'] = Right;
 
-  function next(x) { return {tag: next, value: x}; }
-  function done(x) { return {tag: done, value: x}; }
+  const next = x => ({tag: next, value: x});
+  const done = x => ({tag: done, value: x});
 
   //# Either.fantasy-land/chainRec :: ((a -> c, b -> c, a) -> Either d c, a) -> Either d b
   //.
@@ -216,10 +215,10 @@
   //. . )
   //. Right (65536)
   //. ```
-  Either['fantasy-land/chainRec'] = function(f, x) {
-    var r = next (x);
+  Either['fantasy-land/chainRec'] = (f, x) => {
+    let r = next (x);
     while (r.tag === next) {
-      var either = f (next, done, r.value);
+      const either = f (next, done, r.value);
       if (either.isLeft) return either;
       r = either.value;
     }
@@ -503,7 +502,7 @@
 
   return Either;
 
-}));
+});
 
 //. [Fantasy Land]:             v:fantasyland/fantasy-land
 //. [`Z.equals`]:               v:sanctuary-js/sanctuary-type-classes#equals
