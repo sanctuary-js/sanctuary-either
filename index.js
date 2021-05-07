@@ -95,6 +95,13 @@
       Left$prototype[custom] = Left$prototype$show;
       Right$prototype[custom] = Right$prototype$show;
     }
+    /* istanbul ignore if */
+    if (typeof Deno !== 'undefined') {
+      if (Deno != null && typeof Deno.customInspect === 'symbol') {
+        Left$prototype[Deno.customInspect] = Left$prototype$show;
+        Right$prototype[Deno.customInspect] = Right$prototype$show;
+      }
+    }
   }
 
   //. `Either a b` satisfies the following [Fantasy Land][] specifications:
