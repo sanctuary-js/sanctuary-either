@@ -20,23 +20,18 @@
 
   'use strict';
 
-  const util = {inspect: {}};
-
   /* istanbul ignore else */
   if (typeof module === 'object' && typeof module.exports === 'object') {
-    module.exports = f (require ('util'),
-                        require ('sanctuary-show'),
+    module.exports = f (require ('sanctuary-show'),
                         require ('sanctuary-type-classes'));
   } else if (typeof define === 'function' && define.amd != null) {
-    define (['sanctuary-show', 'sanctuary-type-classes'],
-            (show, Z) => f (util, show, Z));
+    define (['sanctuary-show', 'sanctuary-type-classes'], f);
   } else {
-    self.sanctuaryEither = f (util,
-                              self.sanctuaryShow,
+    self.sanctuaryEither = f (self.sanctuaryShow,
                               self.sanctuaryTypeClasses);
   }
 
-}) ((util, show, Z) => {
+}) ((show, Z) => {
 
   'use strict';
 
@@ -88,19 +83,25 @@
     /* eslint-enable key-spacing */
   };
 
-  {
-    const {custom} = util.inspect;  // added in Node.js v6.6.0
-    /* istanbul ignore else */
-    if (typeof custom === 'symbol') {
-      Left$prototype[custom] = Left$prototype$show;
-      Right$prototype[custom] = Right$prototype$show;
-    }
-    /* istanbul ignore if */
-    if (typeof Deno !== 'undefined') {
-      if (Deno != null && typeof Deno.customInspect === 'symbol') {
-        Left$prototype[Deno.customInspect] = Left$prototype$show;
-        Right$prototype[Deno.customInspect] = Right$prototype$show;
-      }
+  /* istanbul ignore else */
+  if (
+    typeof process !== 'undefined' &&
+    process != null &&
+    process.versions != null &&
+    process.versions.node != null
+  ) {
+    Left$prototype[
+      Symbol.for ('nodejs.util.inspect.custom')  // added in Node.js v10.12.0
+    ] = Left$prototype$show;
+    Right$prototype[
+      Symbol.for ('nodejs.util.inspect.custom')  // added in Node.js v10.12.0
+    ] = Right$prototype$show;
+  }
+  /* istanbul ignore if */
+  if (typeof Deno !== 'undefined') {
+    if (Deno != null && typeof Deno.customInspect === 'symbol') {
+      Left$prototype[Deno.customInspect] = Left$prototype$show;
+      Right$prototype[Deno.customInspect] = Right$prototype$show;
     }
   }
 
