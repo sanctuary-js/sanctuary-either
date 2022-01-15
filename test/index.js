@@ -86,6 +86,17 @@ suite ('Either', () => {
        ('Left (Right (Left (Right (-0))))');
   });
 
+  test ('Either.either', () => {
+    eq (Either.either (a => 'Left (' + show (a) + ')')
+                      (b => 'Right (' + show (b) + ')')
+                      (Left ('abc')))
+       ('Left ("abc")');
+    eq (Either.either (a => 'Left (' + show (a) + ')')
+                      (b => 'Right (' + show (b) + ')')
+                      (Right ([1, 2, 3])))
+       ('Right ([1, 2, 3])');
+  });
+
 });
 
 suite ('type-class predicates', () => {
