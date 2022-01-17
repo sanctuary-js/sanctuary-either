@@ -191,6 +191,22 @@
     return right;
   };
 
+  //# Either.either :: (a -> c) -> (b -> c) -> Either a b -> c
+  //.
+  //. Case-folding function.
+  //.
+  //.   - `either (f) (g) (Left (x))` is equivalent to `f (x)`
+  //.   - `either (f) (g) (Right (x))` is equivalent to `g (x)`
+  //.
+  //. ```javascript
+  //. > Either.either (a => 'left:' + a) (b => 'right:' + b) (Left ('foo'))
+  //. 'left:foo'
+  //.
+  //. > Either.either (a => 'left:' + a) (b => 'right:' + b) (Right ('bar'))
+  //. 'right:bar'
+  //. ```
+  Either.either = f => g => e => (e.isLeft ? f : g) (e.value);
+
   //# Either.fantasy-land/of :: b -> Either a b
   //.
   //.   - `of (Either) (x)` is equivalent to `Right (x)`
