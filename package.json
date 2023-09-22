@@ -3,6 +3,7 @@
   "version": "2.1.0",
   "description": "Fantasy Land -compliant Either type",
   "license": "MIT",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git://github.com/sanctuary-js/sanctuary-either.git"

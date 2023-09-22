@@ -8,10 +8,11 @@ import Z            from 'sanctuary-type-classes';
 import type         from 'sanctuary-type-identifiers';
 import Useless      from 'sanctuary-useless';
 
-import Either       from '../index.js';
+import { EitherX as Either, LeftX as Left, RightX as Right } from "../index.js";
+// import Either       from '../index.js';
 
 
-const {Left, Right} = Either;
+// const {Left, Right} = Either;
 
 
 //    EitherArb :: Arbitrary a -> Arbitrary b -> Arbitrary (Either a b)
@@ -85,13 +86,13 @@ suite ('Either', () => {
   });
 
   test ('Either.either', () => {
-    eq (Either.either (a => 'Left (' + show (a) + ')')
+    eq ((Left ('abc')).either (a => 'Left (' + show (a) + ')')
                       (b => 'Right (' + show (b) + ')')
-                      (Left ('abc')))
+                      )
        ('Left ("abc")');
-    eq (Either.either (a => 'Left (' + show (a) + ')')
+    eq ((Right ([1, 2, 3])).either (a => 'Left (' + show (a) + ')')
                       (b => 'Right (' + show (b) + ')')
-                      (Right ([1, 2, 3])))
+                      )
        ('Right ([1, 2, 3])');
   });
 
