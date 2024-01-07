@@ -20,7 +20,7 @@
 
   'use strict';
 
-  /* istanbul ignore else */
+  /* c8 ignore start */
   if (typeof module === 'object' && typeof module.exports === 'object') {
     module.exports = f (require ('sanctuary-show'),
                         require ('sanctuary-type-classes'));
@@ -30,18 +30,20 @@
     self.sanctuaryEither = f (self.sanctuaryShow,
                               self.sanctuaryTypeClasses);
   }
+  /* c8 ignore stop */
 
 }) ((show, Z) => {
 
   'use strict';
 
-  /* istanbul ignore if */
+  /* c8 ignore start */
   if (typeof __doctest !== 'undefined') {
     /* eslint-disable no-unused-vars, no-var */
     var S = __doctest.require ('sanctuary');
     var $ = __doctest.require ('sanctuary-def');
     /* eslint-enable no-unused-vars, no-var */
   }
+  /* c8 ignore stop */
 
   const eitherTypeIdent = 'sanctuary-either/Either@1';
 
@@ -83,27 +85,27 @@
     /* eslint-enable key-spacing */
   };
 
-  /* istanbul ignore else */
   if (
     typeof process !== 'undefined' &&
     process != null &&
     process.versions != null &&
     process.versions.node != null
   ) {
-    Left$prototype[
-      Symbol.for ('nodejs.util.inspect.custom')  // added in Node.js v10.12.0
-    ] = Left$prototype$show;
-    Right$prototype[
-      Symbol.for ('nodejs.util.inspect.custom')  // added in Node.js v10.12.0
-    ] = Right$prototype$show;
+    const inspect = Symbol.for ('nodejs.util.inspect.custom');
+    Left$prototype[inspect] = Left$prototype$show;
+    Right$prototype[inspect] = Right$prototype$show;
   }
-  /* istanbul ignore if */
-  if (typeof Deno !== 'undefined') {
-    if (Deno != null && typeof Deno.customInspect === 'symbol') {
-      Left$prototype[Deno.customInspect] = Left$prototype$show;
-      Right$prototype[Deno.customInspect] = Right$prototype$show;
-    }
+
+  /* c8 ignore start */
+  if (
+    typeof Deno !== 'undefined' &&
+    Deno != null &&
+    typeof Deno.customInspect === 'symbol'
+  ) {
+    Left$prototype[Deno.customInspect] = Left$prototype$show;
+    Right$prototype[Deno.customInspect] = Right$prototype$show;
   }
+  /* c8 ignore stop */
 
   //. `Either a b` satisfies the following [Fantasy Land][] specifications:
   //.
